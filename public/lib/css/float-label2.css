@@ -1,0 +1,68 @@
+.textinput {
+    height: 3em;
+    margin: 1em 0;
+    position: relative;
+    width: 100%;
+}
+.textinput input,
+.textinput label {
+    cursor: text;
+    font-size: 1.5em;
+    padding: 0.6em 1% 0.15em 1%;
+    position: absolute;
+    transition: all 0.15s ease;
+    width: 98%;
+}
+.textinput input {
+    border: solid black 1px;
+    border-radius: 0.15em;
+}
+.textinput label {
+    color: #BCB9B8;
+    padding: 0.5em 1%;
+}
+.textinput input.filled ~ label,
+.textinput input:focus ~ label {
+    position: absolute;
+}
+.textinput input.filled ~ label {
+    color: #007932;
+}
+.textinput input[type="text"].filled,
+.textinput input[type="email"].filled:valid {
+    background: #B8DB9B;
+}
+.textinput input[type="text"].filled ~label:after,
+.textinput input[type="email"].filled:valid ~label:after {
+    color: #007932;
+    content: "\f058";
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: 3em;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 0.3em;
+    right: 0.3em;
+    transform: translate(0, 0);
+}
+input[type="submit"] {
+    background: #F37043;
+    border: solid #DA1D52;
+    border-radius: 0.15em;
+    border-width: 0 0 0.15em;
+    color: white;
+    cursor: pointer;
+    font-size: 1.6em;
+    padding: 0.2em 0.4em;
+    transition: all 0.15s ease;
+}
+input[type="submit"]:hover {
+    border-width: 0 0 0.1em;
+    margin-top: 0.05em;
+}
+input[type="submit"]:active {
+    border-width: 0 0 0em;
+    margin-top: 0.15em;
+}

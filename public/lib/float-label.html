@@ -1,0 +1,44 @@
+<div class="floatLabel form-group">
+    <input type="{{type}}" id="{{id}}" class="form-control" ng-model="ngModel">
+    <label for="{{id}}">{{labelText}}</label>
+</div>
+
+<style>
+    .floatLabel {
+        position: relative;
+        height: 50px;
+        margin: 10px 0;
+    }
+    
+    .floatLabel input,
+    .floatLabel label {
+        position: absolute;
+        width: 98%;
+        padding-left: 5px;
+    }
+    
+    .floatLabel input {
+        height: 60%;
+        bottom: 0;
+    }
+    
+    .floatLabel label {
+        bottom: 0;
+        cursor: text;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+    
+    .floatLabel input:focus ~ label {
+        top: 0;
+        color: black;
+        font-weight: 700;
+    }
+    
+    .floatLabel input.filled + label {
+        top: 0;
+        color: gray;
+        font-weight: 600;
+    }
+
+</style>

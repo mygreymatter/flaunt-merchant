@@ -1,0 +1,13 @@
+.fix-for-modal {
+    color: white;
+    height: 200px;
+}
+/*form input,
+.form-control {
+    padding: 0;
+}*/
+@media (min-width: 768px) {
+    .modal-sm {
+        width: 400px;
+    }
+}
