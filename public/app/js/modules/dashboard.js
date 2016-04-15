@@ -1,6 +1,11 @@
 (function () {
-    angular.module('Dashboard', [])
-        .controller('DashboardCtrl', ['$scope', function ($scope) {
-            
+    angular.module('Dashboard', ['Authenticator'])
+        .controller('DashboardCtrl', ['$scope', '$state', 'AuthFactory',
+            function ($scope, $state, AuthFactory) {
+
+                if (!AuthFactory.isLoggedIn())
+                    $state.go('Home');
+
+
     }]);
 })();

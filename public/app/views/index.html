@@ -11,7 +11,7 @@
 </head>
 
 <body ng-app="merchantapp">
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-default" ng-controller="NavCtrl">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -21,9 +21,13 @@
 
 
                 </div>
+                <div class="col-md-2" ng-show="isLoggedIn">
+                    <a href="#" ng-click="logout()">
+                        <span>Logut</span>
+                    </a>
+                </div>
                 <!-- /.container-fluid -->
             </div>
-            <div class="col-md-2"></div>
         </div>
     </nav>
     <ui-view></ui-view>
@@ -34,8 +38,10 @@
     <script src="/lib/js/angular-ui-router.min.js"></script>
     <script src="/lib/js/angular-float-label.js"></script>
     <!--app related Javascript-->
+    <script src="/app/js/factories/authfactory.js"></script>
     <script src="/app/js/modules/home.js"></script>
     <script src="/app/js/modules/dashboard.js"></script>
+    <script src="/app/js/modules/navigation.js"></script>
     <script src="/app/js/app.js"></script>
 
 </body>

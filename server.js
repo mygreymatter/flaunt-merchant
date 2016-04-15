@@ -1,7 +1,7 @@
 var express = require('express'),
     app = express(),
-    PORT = process.env.PORT || 5001;
-/*configDB = require('./config/db'),
+    PORT = process.env.PORT || 5001,
+    configDB = require('./config/db'),
     passport = require('passport'),
     flash = require('connect-flash'),
     busboyBodyParser = require('busboy-body-parser'),
@@ -13,11 +13,11 @@ var express = require('express'),
 require('./config/passport')(passport);
 
 
-mongoose.connect(configDB.url);*/
+mongoose.connect(configDB.url);
 
 app.set('port', PORT);
 app.use(express.static(__dirname + '/public'));
-/*app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({
     extended: true
 })); // support encoded bodies
@@ -33,9 +33,7 @@ app.use(flash());
 app.use(busboyBodyParser());
 
 require('./routes/authrouter.js')(app);
-app.get('/store/*', function (req, res) {
-    res.sendFile(__dirname + '/public/merchant/views/merchant.html');
-});*/
+
 app.get('/*', function (req, res) {
     res.sendFile(__dirname + '/public/app/views/index.html');
     /*res.sendFile(__dirname + '/public/views/test.html');*/

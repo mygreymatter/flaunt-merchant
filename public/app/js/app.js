@@ -1,15 +1,15 @@
 (function () {
-    angular.module('merchantapp', ['ui.router', 'Home', 'FloatLabel', 'Dashboard'])
+    angular.module('merchantapp', ['ui.router', 'Home', 'FloatLabel', 'Dashboard', 'Navigator'])
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
             function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 $stateProvider
                     .state('Home', {
-                        url: '/store',
-                        templateUrl: '/merchant/views/home.html',
+                        url: '/',
+                        templateUrl: '/app/views/home.html',
                         controller: 'HomeCtrl'
                     }).state('Dashboard', {
-                        url: '/store/dashboard',
-                        templateUrl: '/merchant/views/dashboard.html',
+                        url: '/dashboard',
+                        templateUrl: '/app/views/dashboard.html',
                         controller: 'DashboardCtrl'
                     });
 
