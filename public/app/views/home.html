@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
-            <form ng-submit="login(user)">
+
+            <form ng-submit="login(user)" ng-show="toBeLogin">
+                <legend><strong>Login</strong></legend>
                 <float-label id="email" type="email" label-text="email" ng-model="user.username"></float-label>
                 <float-label id="password" type="password" label-text="password" ng-model="user.password"></float-label>
                 <p class="text-center">
@@ -11,7 +13,21 @@
 
                 <p class="text-center">
                     Not yet registered?
-                    <a href="register.html"><strong>Signup</strong></a>
+                    <a href="" ng-click="showSignup()"><strong>Signup</strong></a>
+                </p>
+            </form>
+
+            <form ng-submit="signup(user)" ng-hide="toBeLogin">
+                <legend><strong>Signup</strong></legend>
+                <float-label id="email" type="email" label-text="email" ng-model="user.username"></float-label>
+                <float-label id="password" type="password" label-text="password" ng-model="user.password"></float-label>
+                <p class="text-center">
+                    <button class="filter btn btn-primary btn-block" type="submit"><i class="fa fa-sign-in"></i>Signup</button>
+                </p>
+
+                <p class="text-center">
+                    Already have an account?
+                    <a href="" ng-click="showLogin()"><strong>Login</strong></a>
                 </p>
             </form>
         </div>

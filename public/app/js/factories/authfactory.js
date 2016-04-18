@@ -1,16 +1,17 @@
 (function () {
     angular.module('Authenticator', [])
         .factory('AuthFactory', ['$http', '$state', '$window', function ($http, $state, $window) {
-            var auth = {};
+            var auth = {},
+                TAG_TOKEN = 'merchant-local';
 
             auth.message = 'messagelogin';
 
             auth.saveToken = function (token) {
-                $window.localStorage['passport-local'] = token;
+                $window.localStorage[TAG_TOKEN] = token;
             };
 
             auth.getToken = function () {
-                return $window.localStorage['passport-local']
+                return $window.localStorage[TAG_TOKEN]
             };
 
             auth.isLoggedIn = function () {

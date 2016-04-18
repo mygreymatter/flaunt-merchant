@@ -36,7 +36,7 @@ require('./routes/authrouter.js')(app);
 
 app.get('/*', function (req, res) {
     res.sendFile(__dirname + '/public/app/views/index.html');
-    /*res.sendFile(__dirname + '/public/views/test.html');*/
+    /*res.sendFile(__dirname + '/public/app/views/test.html');*/
 });
 
 app.listen(app.get('port'), function () {

@@ -3,7 +3,7 @@ var mongoose = require('mongoose'),
     crypto = require('crypto'),
     jwt = require('jsonwebtoken'),
     Schema = mongoose.Schema,
-    userSchema = new Schema({
+    merchantSchema = new Schema({
         username: {
             type: String,
             required: true,
@@ -14,21 +14,21 @@ var mongoose = require('mongoose'),
 
     });
 
-userSchema.methods.setPassword = function (password) {
+merchantSchema.methods.setPassword = function (password) {
     this.salt = crypto.randomBytes(16).toString('hex');
     this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
 };
 
-userSchema.methods.generateHash = function (password) {
+merchantSchema.methods.generateHash = function (password) {
     return bcrypt.hashSync(password, bcrypt.genSalt(8), null);
 };
 
-userSchema.methods.validPassword = function (password) {
+merchantSchema.methods.validPassword = function (password) {
     var hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64).toString('hex');
     return /*bcrypt.compareSync(password,this.password)*/ this.hash === hash;
 };
 
-userSchema.methods.generateJWT = function () {
+merchantSchema.methods.generateJWT = function () {
     var today = new Date();
     var exp = new Date(today);
     exp.setDate(today.getDate() + 60);
@@ -41,4 +41,4 @@ userSchema.methods.generateJWT = function () {
 };
 
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Merchant', merchantSchema);

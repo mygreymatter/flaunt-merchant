@@ -1,11 +1,11 @@
 module.exports = function (app, passport) {
-    var User = require('../models/User');
+    var Merchant = require('../models/Merchant');
 
 
     app.post('/login', function (req, res) {
         console.log('Call login: ' + req.body.username);
 
-        User.findOne({
+        Merchant.findOne({
                 'username': req.body.username
             },
             function (err, user) {
@@ -15,11 +15,11 @@ module.exports = function (app, passport) {
                 }
 
                 if (user == null) {
-                    console.log('User is null ');
+                    console.log('Merchant is null ');
                     return res.status(500).json();
                 }
 
-                console.log("Found User: " + user);
+                console.log("Found Merchant: " + user);
                 if (user.validPassword(req.body.password))
                     return res.json({
                         status: 'successful login',
@@ -35,7 +35,7 @@ module.exports = function (app, passport) {
     app.post('/signup', function (req, res) {
         console.log("Signup Called: " + req.body.username);
 
-        var user = new User();
+        var user = new Merchant();
 
         user.username = req.body.username;
         user.setPassword(req.body.password);

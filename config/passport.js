@@ -3,7 +3,7 @@
  */
 
 var localStrategy = require('passport-local').Strategy;
-var User = require('../models/User');
+var Merchant = require('../models/Merchant');
 
 module.exports = function (passport) {
 
@@ -12,7 +12,7 @@ module.exports = function (passport) {
     });
 
     passport.deserializeUser(function (id, done) {
-        User.findById(id, function (err, user) {
+        Merchant.findById(id, function (err, user) {
             done(err, user);
         });
     });
@@ -24,7 +24,7 @@ module.exports = function (passport) {
     }, function (req, username, password, done) {
         console.log('Local Signup called');
         process.nextTick(function () {
-            User.findOne({
+            Merchant.findOne({
                 'username': username
             }, function (err, user) {
                 if (err)
@@ -33,7 +33,7 @@ module.exports = function (passport) {
                 if (user)
                     return done(null, false, req.flash('signup_message', 'The username has already been taken!'));
                 else {
-                    var newUser = new User();
+                    var newUser = new Merchant();
                     newUser.username = username;
                     //newUser.password = newUser.se(password);
                     newUser.setPassword(password);
