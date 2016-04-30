@@ -1,0 +1,26 @@
+<div class="row dashboard-content">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <div class="btn btn-primary btn-block" ng-click="createStore()">
+                Create New Store
+            </div>
+            <p></p>
+            <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">
+                    <h2>Branches</h2>
+                </div>
+                <div class="panel-body">
+                    <!-- List group -->
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="branch in branches">{{branch}}</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-3"></div>
+    </div>
+
+</div>
