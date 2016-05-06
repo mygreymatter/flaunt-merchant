@@ -1,0 +1,77 @@
+<div class="row dashboard-content">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+            <div class="well well-sm text-center">
+                <h2>{{title}} Store</h2></div>
+            <form>
+                <legend>
+                    <h3>Business Details</h3>
+                </legend>
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" id="name" placeholder="Name Of The Store" ng-model="store.name">
+                    <span class="input-group-addon">
+                        <span class="fa fa-home"></span>
+                    </span>
+                    <p class="hint">*The registered name of the store</p>
+                </div>
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" id="license" placeholder="License Of The Store" ng-model="store.license">
+                    <span class="input-group-addon">
+                        <span class="fa fa-key" aria-hidden="true"></span>
+                    </span>
+                    <p class="hint">*The registered license number.</p>
+                </div>
+
+                <div class="form-group input-group date" id="datetimepicker">
+                    <input type="text" class="form-control" placeholder="Established Date" ng-model="store.date">
+                    <span class="input-group-addon">
+                        <span class="fa fa-calendar"></span>
+                    </span>
+                    <p class="hint">*The date on when the business was registered.</p>
+                </div>
+                <span><h4>Business Type</h4></span>
+                <div class="checkbox">
+                    <label ng-repeat="t in store.types">
+                        <input type="checkbox" ng-model="t.checked" ng-cloak> {{t.name}}
+                    </label>
+                </div>
+
+                <legend>
+                    <h3>Location Details</h3>
+                </legend>
+                <div class="form-group selections">
+                    <select id="area" class="form-control" ng-options="area as area.name for area in areas track by area.pincode" ng-model="store.area"></select>
+                    <p class="hint">*Choose the name of area in which the businsess is located.</p>
+                </div>
+
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" placeholder="Landmark" ng-model="store.landmark">
+                    <span class="input-group-addon">
+                        <span class="fa fa-map-marker" aria-hidden="true"></span>
+                    </span>
+                    <p class="hint">*Enter a landmark where the businsess is located.</p>
+                </div>
+                <!--<div class="form-group input-group">
+    <input type="number" class="form-control" placeholder="Pincode" ng-model="store.pincode">
+    <span class="input-group-addon">
+                        <span class="fa fa-thumb-tack" aria-hidden="true"></span>
+    </span>
+    <p class="hint">*Enter pincode of the area in which the businsess is located.</p>
+</div>-->
+                <style>
+                    .form-btn {
+                        width: 20%;
+                    }
+
+                </style>
+                <div class="text-center">
+                    <button class="btn btn-default btn-primary form-btn" ng-click="goToStore()">Cancel</button>
+                    <button class="btn btn-default btn-primary form-btn" ng-click="createStore(store)">Create</button>
+                </div>
+
+            </form>
+        </div>
+        <div class="col-sm-2"></div>
+    </div>
+</div>

@@ -1,6 +1,7 @@
 html,
 body {
     height: 100%;
+    overflow-x: hidden;
 }
 form>legend {
     margin-bottom: 0px;
@@ -14,24 +15,24 @@ h6 {
     margin: 0;
 }
 
-/*------------Left Sidebar Navigation---------------------*/
+/*----------------------Left Sidebar Navigation---------------------*/
 
 .row.left {
     width: 100%;
     height: 100%;
 }
 #left-dashboard {
-    background-color: gray;
+    background-color: #2A3F54;
     padding: 0;
 }
-#left-dashboard a {
+#left-dashboard a,
+#left-dashboard a:hover {
     color: #FFFFFF;
     border-radius: 0;
     font-size: 20px;
 }
 #left-dashboard a:hover {
-    border-radius: 0;
-    color: #000000;
+    background-color: #2A3F54;
 }
 .container-fluid.left {
     height: 100%;
@@ -56,4 +57,174 @@ h6 {
     background: #fff;
     height: 100%;
     min-height: 100%;
+}
+#title {
+    color: #FFFFFF;
+    padding: 10px;
+}
+.sidebar li.active {
+    border-right: 5px solid #1ABB9C;
+}
+.sidebar li.active>a {
+    text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
+    background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5b6479), color-stop(100%, #4c5566)), #686e78;
+    background: -webkit-linear-gradient(#334556, #2C4257), #2A3F54;
+    background: -moz-linear-gradient(#334556, #2C4257), #2A3F54;
+    background: -o-linear-gradient(#334556, #2C4257), #2A3F54;
+    background: linear-gradient(#334556, #2C4257), #2A3F54;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0;
+}
+
+/*----------------------Dashboard - Top Bar---------------------*/
+
+a {
+    cursor: pointer;
+}
+nav {
+    padding: 0 10px;
+    background-color: #EDEDED;
+    position: relative;
+}
+.nav a.dropdown-toggle:hover,
+.nav a.dropdown-toggle:focus {
+    background-color: transparent;
+}
+a#menu_toggle>span {
+    position: absolute;
+    top: 20%;
+}
+span.fa {
+    color: #5A738E;
+}
+img.user-profile {
+    width: 29px;
+    height: 29px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/*----------------------Dashboard - Content---------------------*/
+
+.dashboard-content {
+    margin-top: 20px;
+}
+
+/*----------------------Dashboard - Top Bar Notifications---------------------*/
+
+ul.msg_list {
+    width: 300px;
+}
+ul.msg_list li {
+    background-color: #f7f7f7;
+    margin: 5px 5px 0 5px;
+}
+ul.msg_list li:last-child {
+    padding: 5px 0;
+}
+ul.msg_list a {
+    color: gray;
+}
+.dropdown-menu.msg_list span {
+    white-space: normal;
+}
+ul.msg_list li a .message {
+    display: block !important;
+    font-size: 11px;
+}
+ul.msg_list li a .time {
+    font-size: 11px;
+    font-style: italic;
+    font-weight: bold;
+    position: absolute;
+    right: 35px;
+}
+ul.msg_list li a .image img {
+    border-radius: 2px 2px 2px 2px;
+    -webkit-border-radius: 2px 2px 2px 2px;
+    float: left;
+    margin-right: 10px;
+    width: 11%;
+}
+
+/*----------------------Dashboard - Stores---------------------*/
+
+li.list-group-item:hover {
+    cursor: pointer;
+}
+
+/*----------------------Dashboard - StoresEditor---------------------*/
+
+
+/*------------------ng-cloak------------------------
+ not to display the unfinished AngularJS code 
+*/
+
+[ng\: cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x- ng-cloak {
+    display: none !important;
+}
+.form-group {
+    margin-bottom: 20px;
+}
+.form-group.selections {
+    margin-bottom: 0;
+}
+.form-control {
+    width: 90%;
+}
+select.form-control {
+    width: 100%;
+}
+
+/*------------------Input Hint------------------------*/
+
+p.hint {
+    margin: 0;
+}
+.input-group .form-control~p.hint {
+    position: absolute;
+    left: 0;
+    top: 100%;
+}
+.input-group .form-control~p.hint,
+.form-control~p.hint {
+    color: #FFFFFF;
+    font-size: 12px;
+}
+.input-group .form-control:focus~p.hint,
+.form-control:focus~p.hint {
+    color: #000000;
+}
+
+/*------------------Option size------------------------*/
+
+select option {
+    font-size: 20px;
+}
+
+/*------------------Remove Up and Down arrows in number input field------------------------*/
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button,
+{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* for firefox */
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+/*------------------type checkbox------------------------*/
+
+.checkbox>label:not(:first-child) {
+    margin-left: 20px;
 }

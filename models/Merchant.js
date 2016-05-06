@@ -1,3 +1,6 @@
+//create an Index for the model in the mongo shell using the following command
+//db.merchants.ensureIndex({username:1},{unique:true})
+//username must be unique
 var mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     crypto = require('crypto'),

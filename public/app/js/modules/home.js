@@ -2,7 +2,7 @@
     angular.module('Home', ['Authenticator'])
         .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$http', 'AuthFactory',
         function ($scope, $rootScope, $state, $http, AuthFactory) {
-
+                console.log("HomeCtrl");
                 $scope.toBeLogin = true;
 
                 $scope.showSignup = function () {
