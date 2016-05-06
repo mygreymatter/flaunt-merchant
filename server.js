@@ -39,6 +39,7 @@ require('./routes/sizerouter.js')(app);
 require('./routes/reviewrouter.js')(app);
 require('./routes/orderrouter.js')(app);
 require('./routes/visitorrouter.js')(app);
+require('./routes/imagerouter.js')(app);
 
 app.get('/*', function (req, res) {
     res.sendFile(__dirname + '/public/app/views/index.html');

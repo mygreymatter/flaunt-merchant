@@ -1,6 +1,6 @@
 (function () {
     'use strict'
-    angular.module('merchantapp', ['ui.router', 'Home', 'FloatLabel', 'Dashboard', 'Navigator', 'Stores'])
+    angular.module('merchantapp', ['ui.router', 'Home', 'FloatLabel', 'Dashboard', 'Navigator', 'Stores', 'Product'])
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider',
             function ($stateProvider, $urlRouterProvider, $locationProvider) {
                 $stateProvider
@@ -26,11 +26,16 @@
                         params: {
                             'editor_type': null
                         },
-                        controller: 'StoresEditorCtrl'
+                        controller: 'StoresEditorCtrl',
+                        resolve: {
+                            areas: function (AreaFactory) {
+                                return AreaFactory.getAllAreas();
+                            }
+                        }
                     }).state('Dashboard.Products', {
                         /*url: '/products',*/
                         templateUrl: '/app/views/products.html',
-                        controller: ''
+                        controller: 'ProductCtrl'
                     }).state('Dashboard.Statistics', {
                         /*url: '/statistics',*/
                         templateUrl: '/app/views/statistics.html',
@@ -47,16 +52,6 @@
                     requireBase: false
                 });
                 $urlRouterProvider.otherwise('/');
-            }])
-        .run(['$location', '$state', '$window', function ($location, $state, $window) {
-            console.log('State: ' + sessionStorage.getItem('state'));
-            console.log('Run: ' + $location.path() + " " + $location.hash());
-            var windowElement = angular.element($window);
-            window.onbeforeunload = function (event) {
-                // do whatever you want in here before the page unloads.        
-                console.log('BeforeUnload');
-                // the following line of code will prevent reload or navigating away.
-                event.preventDefault();
-            };
             }]);
+
 })();

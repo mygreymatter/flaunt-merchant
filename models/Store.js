@@ -20,7 +20,7 @@ var mongoose = require('mongoose'),
         landmark: {
             type: String
         },
-        area: {
+        area_id: {
             type: ObjectId,
             required: true
         },

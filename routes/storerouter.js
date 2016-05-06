@@ -11,31 +11,34 @@ module.exports = function (app) {
         .post(function (req, res) {
             console.log("\n\n----------------------------------\n\n");
             console.log("Create Store: ");
-            for (var k in req.body) {
-                console.log(k + ': ' + req.body[k]);
-            }
 
             var store = new Store();
             store.name = req.body.name;
             store.license = req.body.license;
             store.landmark = req.body.landmark;
-            store.area = req.body.area;
+            store.area_id = req.body.area._id;
+            store.business_type = [];
+
+            req.body.types.forEach(function (type) {
+                if (type.checked) {
+                    store.business_type.push(type.name);
+                }
+            });
+
+            console.log('Business Type: ' + store.business_type);
+            store.date_of_establishment = new Date(req.body.date_of_establishment);
 
             //converts array in the form of string into an array
             //"["a","b"]"  ====> ["a","b"]
-            req.body.business_type = getArrayFromString(req.body.business_type);
+            /*req.body.business_type = getArrayFromString(req.body.business_type);
             console.log('Arr: ' + req.body.business_type);
 
             req.body.business_type.forEach(function (value) {
                 store.business_type.push(value);
-            });
+            });*/
 
-            store.date_of_establishment = new Date(req.body.date_of_establishment);
 
-            console.log("\n----------------------------------\n");
-            console.log('Store Info: ' + Object.keys(store));
-            console.log('Store Info: ' + store);
-            console.log("\n----------------------------------\n");
+
             store.save(function (err) {
                 if (err) {
                     console.log('Save Error: ' + err.code + ' ' + err.message);
@@ -48,6 +51,9 @@ module.exports = function (app) {
                 return res.json();
 
             });
+            /*         return res.status(200).json({
+                      message: 'success'
+                  });*/
 
         }).get(function (req, res) {
             console.log('Getting store');

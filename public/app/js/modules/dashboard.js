@@ -46,11 +46,7 @@
 
                         $state.go(state);
                     }
-
                 }
-
-
-
 
                 $scope.clicked = function (p) {
                     $scope.activeMenuItem = p;
