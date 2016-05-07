@@ -228,3 +228,9 @@ input[type=number] {
 .checkbox>label:not(:first-child) {
     margin-left: 20px;
 }
+
+/*------------------form button------------------------*/
+
+.form-btn {
+    width: 20%;
+}

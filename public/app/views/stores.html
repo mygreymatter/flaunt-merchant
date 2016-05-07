@@ -6,7 +6,8 @@
                 Create New Store
             </div>
             <p></p>
-            <div class="panel panel-default">
+            <h3 class="text-center" ng-show="stores.length === 0">No stores created yet! Create one.</h3>
+            <div class="panel panel-default" ng-show="stores.length > 0">
                 <!-- Default panel contents -->
                 <div class="panel-heading">
                     <h2>Branches</h2>
@@ -14,7 +15,7 @@
                 <div class="panel-body">
                     <!-- List group -->
                     <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="branch in branches">{{branch}}</li>
+                        <li class="list-group-item" ng-repeat="store in stores" ng-click="editStore(store)">{{store.area_name}}</li>
                     </ul>
                 </div>
             </div>

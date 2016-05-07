@@ -19,12 +19,18 @@
                     }).state('Dashboard.Stores', {
                         /*url: '/stores',*/
                         templateUrl: '/app/views/stores.html',
-                        controller: 'StoresCtrl'
+                        controller: 'StoresCtrl',
+                        resolve: {
+                            stores: function (AuthFactory, StoreFactory) {
+                                return StoreFactory.getAllStores(AuthFactory.currentUser()._id);
+                            }
+                        }
                     }).state('Dashboard.StoresEditor', {
                         /*url: '/stores/editor',*/
                         templateUrl: '/app/views/stores-editor.html',
                         params: {
-                            'editor_type': null
+                            'isEditMode': false,
+                            'store': null
                         },
                         controller: 'StoresEditorCtrl',
                         resolve: {
