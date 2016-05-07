@@ -71,8 +71,8 @@
 
             auth.logout = function (user) {
                 console.log('AuthFactory Logout');
-                $window.localStorage.removeItem('passport-local');
-                console.log('Token: ' + $window.localStorage['passport-local']);
+                $window.localStorage.removeItem('merchant-local');
+                console.log('Token: ' + $window.localStorage['merchant-local']);
             };
 
             return auth;

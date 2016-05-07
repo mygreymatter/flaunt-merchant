@@ -5,11 +5,6 @@
                 <h3>Flaunt</h3>
             </div>
             <ul class="nav nav-pills nav-stacked text-center">
-                <!--<li role="presentation" class="active" ng-click="clicked(0)"><a href="#">Dashboard</a></li>
-                <li role="presentation" ng-click="clicked(1)"><a ui-sref=".Stores">Stores</a></li>
-                <li role="presentation" ng-click="clicked(2)"><a ui-sref=".Products">Products</a></li>
-                <li role="presentation" ng-click="clicked(3)"><a ui-sref=".Statistics">Statistics</a></li>
-                <li role="presentation" ng-click="clicked(4)"><a ui-sref=".Reports">Reports</a></li>-->
                 <li role="presentation" ng-class="{active : activeMenuItem === i.pos}" ng-click="clicked($index)" ng-repeat="i in menu_items">
                     <a ui-sref=".{{i.state}}">{{i.name}}</a>
                 </li>
@@ -83,7 +78,7 @@
                                         </a>
                                     </li>
                                     <li><a href="#">Help</a></li>
-                                    <li>
+                                    <li ng-click="logout()">
                                         <a href="#">
                                             <span class="fa fa-sign-out pull-right"></span>Log Out
                                         </a>

@@ -1,68 +1,109 @@
 (function () {
-    angular.module('Stores', ['AreasModule'])
-        .controller('StoresCtrl', ['$scope', '$rootScope', '$state',
-        function ($scope, $rootScope, $state) {
+    angular.module('Stores', ['AreasModule', 'Authenticator', 'StoresModule'])
+        .controller('StoresCtrl', ['$scope', '$state', 'AuthFactory', 'StoreFactory', 'stores',
+
+        function ($scope, $state, AuthFactory, StoreFactory, stores) {
+
                 sessionStorage.setItem('state', 'Dashboard.Stores');
-                $scope.branches = ['Jayanagar', 'J.P.Nagar 1st Phase', 'Banshankari 3rd Phase'];
+                $scope.stores = stores;
+
                 $scope.createStore = function () {
-                    /*$rootScope.$emit("StateChange", {
-                        'state': 'store_editor'
-                    });*/
                     $state.go('Dashboard.StoresEditor', {
-                        'editor_type': 'Create New'
+                        isEditMode: false,
+                        store: null
                     });
                 };
 
+                $scope.editStore = function (store) {
+                    $state.go('Dashboard.StoresEditor', {
+                        isEditMode: true,
+                        store: store
+                    });
+                };
 
-        }]).controller('StoresEditorCtrl', ['$scope', '$http', '$state', 'AreaFactory', 'areas',
-           function ($scope, $http, $state, AreaFactory, areas) {
+        }]).controller('StoresEditorCtrl', ['$scope', '$http', '$state', 'AreaFactory', 'areas', 'AuthFactory',
+           function ($scope, $http, $state, AreaFactory, areas, AuthFactory) {
                 sessionStorage.setItem('state', 'Dashboard.StoresEditor');
+                $scope.isEditMode = $state.params.isEditMode;
                 $scope.areas = areas;
-
-                areas.forEach(function (area) {
-                    console.log('Area: ' + area.name);
-                });
-
-                $(angular.element('#datetimepicker')).datetimepicker({
-                    format: 'D/MM/YYYY'
-                });
-                $scope.title = $state.params.editor_type;
                 $scope.store = {};
 
-                $scope.selected = $scope.areas[0];
-                $scope.store.types = [{
-                    "name": 'Clothing',
-                    "checked": false
-            }, {
-                    "name": 'Bags',
-                    "checked": false
-            }, {
-                    "name": 'Footwear',
-                    "checked": false
-            }, {
-                    "name": 'Accessories',
-                    "checked": false
-            }];
+                $scope.store.types = {
+                    Clothing: false,
+                    Bags: false,
+                    Footwear: false,
+                    Accessories: false
+                };
 
+                var date = $(angular.element('#datetimepicker'));
 
+                if (!$scope.isEditMode) {
+                    $scope.title = 'Create New';
+                    date.datetimepicker({
+                        format: 'D/MM/YYYY'
+                    });
+
+                    $scope.selected = $scope.areas[0];
+
+                    $scope.createStore = function (store) {
+
+                        store.area = $scope.selected.name;
+                        store.date_of_establishment = date.data('DateTimePicker').date()._d;
+                        store.merchant_id = AuthFactory.currentUser()._id;
+
+                        $http.post('/store', store)
+                            .then(function (response) {
+                                console.log('Store created successfully: ' + store.name);
+                                $state.go('Dashboard.Stores');
+                            }, function (err) {
+                                console.log("Failed creating store: " + err);
+                            });
+
+                    };
+                } else {
+                    $scope.title = 'Edit Store';
+                    $scope.store = $state.params.store;
+                    date.datetimepicker({
+                        defaultDate: new Date($scope.store.date_of_establishment)
+                    });
+
+                    $scope.store.types = {
+                        Clothing: false,
+                        Bags: false,
+                        Footwear: false,
+                        Accessories: false
+                    };
+
+                    $scope.store.business_type.forEach(function (type) {
+                        Object.keys($scope.store.types).forEach(function (storeType) {
+                            if (storeType === type) {
+                                $scope.store.types[type] = true;
+                            }
+                        });
+                    });
+
+                    $scope.areas.forEach(function (area) {
+                        if (area.name === $scope.store.area_name)
+                            $scope.selected = area;
+                    });
+
+                    $scope.updateStore = function (store) {
+                        store.area = $scope.selected.name;
+                        store.date_of_establishment = date.data('DateTimePicker').date()._d;
+                        store.merchant_id = AuthFactory.currentUser()._id;
+
+                        $http.put('/store', store)
+                            .then(function (response) {
+                                console.log('Store created successfully: ' + store.name);
+                                $state.go('Dashboard.Stores');
+                            }, function (err) {
+                                console.log("Failed creating store: " + err);
+                            });
+                    };
+
+                }
                 $scope.goToStore = function () {
                     $state.go('Dashboard.Stores');
                 };
-
-                $scope.createStore = function (store) {
-                    store.date = $(angular.element('#datetimepicker>input')).val();
-
-                    $http.post('/store', store)
-                        .then(function (response) {
-                            console.log('Store created successfully: ' + store.name);
-                            $state.go('Dashboard.Stores');
-                        }, function (err) {
-
-                        });
-
-
-                };
-
-    }]);
-
+                        }]);
 })();

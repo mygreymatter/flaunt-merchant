@@ -2,7 +2,7 @@
     angular.module('Dashboard', ['Authenticator'])
         .controller('DashboardCtrl', ['$scope', '$rootScope', '$state', 'AuthFactory',
             function ($scope, $rootScope, $state, AuthFactory) {
-                console.log('Dashboard.js');
+
                 $scope.menu_items = [
                     {
                         "pos": 0,
@@ -59,6 +59,11 @@
                     $state.go('Dashboard.StoresEditor');
                 });
 
+                $scope.logout = function () {
+                    console.log('Logout');
+                    AuthFactory.logout();
+                    $state.go('Home');
+                };
                 console.log("State: " + sessionStorage.getItem('state'));
 
     }]);

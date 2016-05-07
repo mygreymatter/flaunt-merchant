@@ -6,9 +6,8 @@
             };
 
             o.getAllAreas = function () {
-                console.log('Get Areas in AreaFactory');
                 return $http.get('/area').then(function (response) {
-                    console.log('Success: ' + response.data);
+                    //console.log('Success: ' + response.data);
                     return angular.copy(response.data, o.areas);
                 }, function (error) {
                     console.log('Getting areas Error: ' + error);

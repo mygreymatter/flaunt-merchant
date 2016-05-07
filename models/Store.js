@@ -20,7 +20,11 @@ var mongoose = require('mongoose'),
         landmark: {
             type: String
         },
-        area_id: {
+        area_name: {
+            type: String,
+            required: true
+        },
+        merchant_id: {
             type: ObjectId,
             required: true
         },

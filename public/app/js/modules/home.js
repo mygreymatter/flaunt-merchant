@@ -2,7 +2,7 @@
     angular.module('Home', ['Authenticator'])
         .controller('HomeCtrl', ['$scope', '$rootScope', '$state', '$http', 'AuthFactory',
         function ($scope, $rootScope, $state, $http, AuthFactory) {
-                console.log("HomeCtrl");
+
                 $scope.toBeLogin = true;
 
                 $scope.showSignup = function () {
@@ -16,12 +16,14 @@
                 };
 
                 $scope.isLoggedIn = AuthFactory.isLoggedIn();
-                if ($scope.isLoggedIn)
+                if ($scope.isLoggedIn) {
                     $state.go('Dashboard');
+                }
+
 
                 $scope.login = function (user) {
                     $http.post('/login', user).then(function (response) {
-                        console.log("response: " + response.status);
+                        console.log("response: " + response);
                         AuthFactory.saveToken(response.data.token);
                         $rootScope.$emit("HideLogout", {});
                         $state.go('Dashboard');
